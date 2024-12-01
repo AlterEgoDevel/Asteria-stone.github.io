@@ -1,74 +1,115 @@
-/* Основные стили для тела страницы */
+/* styles.css */
 body {
-    /* Градиентный фон */
-    background: linear-gradient(135deg, #4CAF50, #8BC34A);
-    color: white;
     font-family: 'Arial', sans-serif;
-    text-align: center;
     margin: 0;
     padding: 0;
-    height: 100vh;
+    background: linear-gradient(135deg, #56ccf2, #2f80ed);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-  }
-  
-  /* Стили для заголовка */
-  h1 {
-    font-size: 3rem;
+    height: 100vh;
+    color: #ffffff;
+}
+
+.container {
+    text-align: center;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    color: #333;
+}
+
+h1 {
+    font-size: 2rem;
     margin: 0 0 20px;
-    animation: fadeIn 2s ease; /* Анимация появления */
-  }
-  
-  /* Кнопка для начала игры */
-  button {
-    background-color: #ffffff; /* Белый фон кнопки */
-    color: #4CAF50; /* Зелёный текст */
-    border: none;
-    border-radius: 30px; /* Округлённые углы */
-    padding: 15px 30px; /* Внутренние отступы */
-    font-size: 1.5rem;
+    color: #2f80ed;
+}
+
+#game-area {
+    margin: 20px 0;
+}
+
+#road {
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, #ddd, #ccc);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin: 20px 0;
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#car {
+    width: 60px;
+    height: 40px;
+    background: linear-gradient(to right, #ff5733, #c70039);
+    border-radius: 8px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    transition: left 1s linear; /* Плавное движение */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+
+#stats {
+    font-size: 1.2rem;
+    margin: 20px 0;
+    color: #555;
+    text-align: center;
+}
+
+#stats span {
     font-weight: bold;
-    cursor: pointer; /* Указатель мыши */
-    transition: all 0.3s ease; /* Плавные переходы */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для объёмности */
-  }
-  
-  /* Эффект кнопки при наведении */
-  button:hover {
-    background-color: #4CAF50; /* Меняем фон на зелёный */
-    color: #ffffff; /* Текст становится белым */
-    transform: scale(1.1); /* Увеличение кнопки */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Увеличение тени */
-  }
-  
-  /* Стиль текста для отображения счёта */
-  #score {
-    margin-top: 20px;
-    font-size: 1.5rem;
-    animation: bounce 2s infinite; /* Анимация подпрыгивания */
-  }
-  
-  /* Анимация появления заголовка */
-  @keyframes fadeIn {
-    from {
-      opacity: 0; /* Исходная прозрачность */
-      transform: translateY(-20px); /* Исходное положение сверху */
+    color: #333;
+}
+
+
+.buttons button {
+    margin: 10px 5px;
+    padding: 15px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#start-btn {
+    background: #28a745;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2);
+}
+
+#refuel-btn {
+    background: #007bff;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+button:disabled {
+    background: #ccc;
+    color: #777;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Анимация движения */
+@keyframes moveCar {
+    0% {
+        left: 0;
     }
-    to {
-      opacity: 1; /* Полная видимость */
-      transform: translateY(0); /* Конечное положение */
+    100% {
+        left: calc(100% - 70px);
     }
-  }
-  
-  /* Анимация подпрыгивания счёта */
-  @keyframes bounce {
-    0%, 100% {
-      transform: translateY(0); /* Исходное положение */
-    }
-    50% {
-      transform: translateY(-10px); /* Подпрыгивание вверх */
-    }
-  }
+}
