@@ -1,61 +1,74 @@
+/* Основные стили для тела страницы */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    /* Градиентный фон */
+    background: linear-gradient(135deg, #4CAF50, #8BC34A);
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
     margin: 0;
     padding: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    align-items: center;
+    overflow: hidden;
   }
   
-  .container {
-    text-align: center;
-  }
-  
+  /* Стили для заголовка */
   h1 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 3rem;
+    margin: 0 0 20px;
+    animation: fadeIn 2s ease; /* Анимация появления */
   }
   
-  .game {
-    margin: 20px 0;
-  }
-  
-  #stone {
-    width: 150px;
-    height: auto;
-    cursor: pointer;
-    transition: transform 0.1s;
-  }
-  
-  #stone:active {
-    transform: scale(0.9);
-  }
-  
-  p {
-    font-size: 1.2rem;
-    margin-top: 10px;
-  }
-  
-  .buttons {
-    margin-top: 20px;
-  }
-  
+  /* Кнопка для начала игры */
   button {
-    font-size: 1rem;
-    margin: 5px;
-    padding: 10px 20px;
+    background-color: #ffffff; /* Белый фон кнопки */
+    color: #4CAF50; /* Зелёный текст */
     border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: white;
-    transition: background-color 0.3s;
+    border-radius: 30px; /* Округлённые углы */
+    padding: 15px 30px; /* Внутренние отступы */
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer; /* Указатель мыши */
+    transition: all 0.3s ease; /* Плавные переходы */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для объёмности */
   }
   
+  /* Эффект кнопки при наведении */
   button:hover {
-    background-color: #0056b3;
+    background-color: #4CAF50; /* Меняем фон на зелёный */
+    color: #ffffff; /* Текст становится белым */
+    transform: scale(1.1); /* Увеличение кнопки */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Увеличение тени */
   }
   
+  /* Стиль текста для отображения счёта */
+  #score {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    animation: bounce 2s infinite; /* Анимация подпрыгивания */
+  }
+  
+  /* Анимация появления заголовка */
+  @keyframes fadeIn {
+    from {
+      opacity: 0; /* Исходная прозрачность */
+      transform: translateY(-20px); /* Исходное положение сверху */
+    }
+    to {
+      opacity: 1; /* Полная видимость */
+      transform: translateY(0); /* Конечное положение */
+    }
+  }
+  
+  /* Анимация подпрыгивания счёта */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0); /* Исходное положение */
+    }
+    50% {
+      transform: translateY(-10px); /* Подпрыгивание вверх */
+    }
+  }
