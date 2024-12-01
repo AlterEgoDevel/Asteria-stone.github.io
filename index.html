@@ -1,25 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stylish Telegram Game</title>
-  <!-- Подключаем CSS -->
-  <link rel="stylesheet" href="styles.css">
-  <!-- Подключаем Telegram Web App API -->
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дорога к успеху</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Заголовок игры -->
-  <h1>НАТАПАЙ НА ИНВАЛИДНОСТЬ</h1>
-
-  <!-- Кнопка для старта игры -->
-  <button id="startGame">МСЕК</button>
-
-  <!-- Отображение результата (счёта) -->
-  <p id="score"></p>
-
-  <!-- Подключаем JavaScript -->
-  <script src="script.js"></script>
+    <div class="container">
+        <h1>🚗 Дорога к успеху</h1>
+        <div id="game-area">
+            <div id="road">
+                <div id="car"></div>
+            </div>
+            <p id="status-message">Нажмите "Старт", чтобы начать движение!</p>
+            <p id="stats">
+                Пройденный путь: <span id="distance">0.0</span> км <br>
+                Очков собрано: <span id="points">0</span> <br>
+                Всего очков: <span id="total-points">0</span> <br>
+                Осталось времени до остановки: <span id="time-left">3:00:00</span>
+            </p>
+            
+            
+            
+            
+            
+        </div>
+        <div class="buttons">
+            <button id="start-btn">🚀 Старт</button>
+            <button id="refuel-btn" disabled>⛽ Заправить</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
