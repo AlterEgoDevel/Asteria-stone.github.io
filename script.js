@@ -1,104 +1,90 @@
-// script.js
-let isDriving = false;
-let distance = 0; // Пройденное расстояние за поездку
-let points = 0; // Очки за текущую поездку
-let totalPoints = 0; // Общая сумма очков за всё время
-let timeLeft = 3 * 60 * 60; // В секундах (3 часа)
-let carPosition = 0; // Позиция машины в процентах
-let timerInterval = null;
+const gameContainer = document.getElementById('game-container');
+const scoreDisplay = document.getElementById('score');
+const startButton = document.getElementById('start-button');
 
-// Загружаем данные пользователя из localStorage
-function loadProgress() {
-    const savedTotalPoints = localStorage.getItem("totalPoints");
+let score = 0;
+let gameInterval;
+let gameDuration = 30000; // 30 секунд
+let dangerousIconsCount = 0;
 
-    totalPoints = savedTotalPoints ? parseFloat(savedTotalPoints) : 0;
+const icons = [
+    { className: 'danger', points: -100, maxCount: 5 },
+    { className: 'bonus1', points: 1 },
+    { className: 'bonus5', points: 5 }
+];
 
-    updateStats();
+function startGame() {
+    score = 0;
+    dangerousIconsCount = 0;
+    scoreDisplay.textContent = score;
+    startButton.style.display = 'none';
+
+    gameInterval = setInterval(spawnIcon, 500);
+
+    setTimeout(() => {
+        clearInterval(gameInterval);
+        alert(`Игра закончена! Ваши очки: ${score}`);
+        startButton.style.display = 'block';
+    }, gameDuration);
 }
 
-function saveProgress() {
-    localStorage.setItem("totalPoints", totalPoints.toFixed(0));
+function spawnIcon() {
+    const iconType = Math.random() < 0.2 && dangerousIconsCount < 5
+        ? icons[0]
+        : Math.random() < 0.5
+        ? icons[1]
+        : icons[2];
+
+    if (iconType.className === 'danger') dangerousIconsCount++;
+
+    const icon = document.createElement('div');
+    icon.className = `icon ${iconType.className}`;
+    icon.style.left = `${Math.random() * 100}vw`;
+    icon.style.width = `30px`; // Фиксированный размер иконки
+    icon.style.height = `30px`;
+    icon.style.padding = `20px`; // Увеличенная кликабельная область
+    icon.style.animationDuration = `${3 + Math.random() * 2}s, ${2 + Math.random() * 3}s`; // Разная скорость падения и вращения
+    icon.style.animationDirection = `normal, ${Math.random() > 0.5 ? 'reverse' : 'normal'}`; // Случайное направление вращения
+    icon.style.backgroundImage = `url('images/${iconType.className}.png')`; // Подключаем изображение
+    gameContainer.appendChild(icon);
+
+    icon.addEventListener('click', () => {
+        score += iconType.points;
+        scoreDisplay.textContent = score;
+        icon.remove();
+    });
+
+    icon.addEventListener('animationend', () => icon.remove());
 }
 
-const startButton = document.getElementById("start-btn");
-const refuelButton = document.getElementById("refuel-btn");
-const distanceDisplay = document.getElementById("distance");
-const statusMessage = document.getElementById("status-message");
-const car = document.getElementById("car");
-const timeLeftDisplay = document.getElementById("time-left");
 
-// Обновление времени
-function updateTimeLeft() {
-    const hours = Math.floor(timeLeft / 3600);
-    const minutes = Math.floor((timeLeft % 3600) / 60);
-    const seconds = timeLeft % 60;
 
-    timeLeftDisplay.textContent = `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+startButton.addEventListener('click', startGame);
+
+function spawnIcon() {
+    const iconType = Math.random() < 0.2 && dangerousIconsCount < 5
+        ? icons[0]
+        : Math.random() < 0.5
+        ? icons[1]
+        : icons[2];
+
+    if (iconType.className === 'danger') dangerousIconsCount++;
+
+    const icon = document.createElement('div'); // Используем <div>
+    icon.className = `icon ${iconType.className}`;
+    icon.style.left = `${Math.random() * 100}vw`;
+    icon.style.width = `${10 + Math.random() * 20}px`; // Рандомный размер
+    icon.style.height = icon.style.width; // Делаем элемент квадратным
+    gameContainer.appendChild(icon);
+
+    icon.addEventListener('click', () => {
+        score += iconType.points;
+        scoreDisplay.textContent = score;
+        icon.remove();
+    });
+
+    icon.addEventListener('animationend', () => icon.remove());
+
+    const duration = 3 + Math.random() * 2; // 3-5 секунд падения
+    icon.style.animationDuration = `${duration}s`;
 }
-
-// Обновление статистики
-function updateStats() {
-    distanceDisplay.textContent = `${distance.toFixed(1)} км`;
-    document.getElementById("points").textContent = `${points.toFixed(0)} очков`;
-    document.getElementById("total-points").textContent = `${totalPoints.toFixed(0)} очков`;
-}
-
-// Запуск машины
-startButton.addEventListener("click", () => {
-    if (isDriving) return;
-
-    isDriving = true;
-    statusMessage.textContent = "Машина едет...";
-    carPosition = 0; // Сброс позиции машины
-    car.style.left = "0%";
-
-    timerInterval = setInterval(() => {
-        timeLeft -= 1;
-        carPosition += (1 / (3 * 60 * 60)) * 100; // Прогресс в процентах
-
-        // Если время закончилось, останавливаем машину
-        if (timeLeft <= 0 || carPosition >= 100) {
-            stopCar();
-            return;
-        }
-
-        // Обновляем пройденный путь и положение машины
-        distance += 0.1; // 0.1 км за каждую секунду
-        points = distance * 100; // Очки за текущую поездку
-        car.style.left = `${carPosition}%`;
-
-        updateStats();
-        updateTimeLeft();
-    }, 1000);
-});
-
-// Остановка машины
-function stopCar() {
-    isDriving = false;
-    clearInterval(timerInterval);
-    car.style.left = "100%"; // Машина останавливается на 100%
-    totalPoints += points; // Добавляем очки в общую сумму
-    points = 0; // Сбрасываем текущие очки
-    distance = 0; // Сбрасываем пройденное расстояние
-    statusMessage.textContent = "Машина остановилась! Заправьте её, чтобы продолжить.";
-    refuelButton.disabled = false;
-    startButton.disabled = true;
-    saveProgress();
-}
-
-// Заправка машины
-refuelButton.addEventListener("click", () => {
-    if (isDriving) return;
-
-    refuelButton.disabled = true;
-    startButton.disabled = false;
-    timeLeft = 3 * 60 * 60; // Сбрасываем время
-    carPosition = 0; // Сбрасываем позицию
-    car.style.left = "0%"; // Машина возвращается в начало
-    statusMessage.textContent = "Машина заправлена! Нажмите 'Старт', чтобы продолжить.";
-    updateTimeLeft();
-});
-
-// Загружаем прогресс при загрузке страницы
-loadProgress();
-updateTimeLeft();
