@@ -1,115 +1,110 @@
-/* styles.css */
-body {
-    font-family: 'Arial', sans-serif;
+/* Основной стиль для мобильных */
+body, html {
     margin: 0;
     padding: 0;
-    background: linear-gradient(135deg, #56ccf2, #2f80ed);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    color: #ffffff;
-}
-
-.container {
-    text-align: center;
-    background: #ffffff;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 400px;
-    color: #333;
-}
-
-h1 {
-    font-size: 2rem;
-    margin: 0 0 20px;
-    color: #2f80ed;
-}
-
-#game-area {
-    margin: 20px 0;
-}
-
-#road {
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(to bottom, #ddd, #ccc);
-    border-radius: 10px;
-    position: relative;
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
     overflow: hidden;
-    margin: 20px 0;
-    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.1);
+    touch-action: manipulation; /* Оптимизация для тач-устройств */
 }
 
-#car {
-    width: 60px;
-    height: 40px;
-    background: linear-gradient(to right, #ff5733, #c70039);
-    border-radius: 8px;
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#scoreboard {
     position: absolute;
-    top: 30px;
-    left: 0;
-    transition: left 1s linear; /* Плавное движение */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    top: 10px;
+    left: 10px;
+    font-size: 5vw; /* Увеличиваем текст для мобильных */
 }
 
-
-
-#stats {
-    font-size: 1.2rem;
-    margin: 20px 0;
-    color: #555;
-    text-align: center;
-}
-
-#stats span {
-    font-weight: bold;
-    color: #333;
-}
-
-
-.buttons button {
-    margin: 10px 5px;
+button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     padding: 15px 30px;
-    font-size: 1rem;
+    font-size: 5vw; /* Кнопка станет больше на мобильных */
+    background-color: #333;
+    color: white;
     border: none;
-    border-radius: 30px;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-#start-btn {
-    background: #28a745;
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 128, 0, 0.2);
-}
-
-#refuel-btn {
-    background: #007bff;
-    color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 255, 0.2);
+    border-radius: 10px;
 }
 
 button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    background-color: #555;
 }
 
-button:disabled {
-    background: #ccc;
-    color: #777;
-    cursor: not-allowed;
-    box-shadow: none;
+.icon {
+    position: absolute;
+    animation: fall linear, rotate infinite;
+    width: 30px; /* Видимый размер иконки */
+    height: 30px; /* Видимый размер иконки */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* Увеличиваем кликабельную область */
+    padding: 20px; /* Добавляем невидимую область для клика */
+    box-sizing: content-box; /* Padding не влияет на визуальный размер */
+    cursor: pointer; /* Для десктопов */
+
+    /* Оптимизация для тач-устройств */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
-/* Анимация движения */
-@keyframes moveCar {
-    0% {
-        left: 0;
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
     }
-    100% {
-        left: calc(100% - 70px);
+    to {
+        transform: rotate(360deg);
     }
 }
+
+@keyframes fall {
+    from {
+        top: -50px;
+    }
+    to {
+        top: 100vh;
+    }
+}
+
+.icon.bonus1 {
+    background-image: url('img/Vector coin x.png');
+}
+
+.icon.bonus5 {
+    background-image: url('img/Vector coin 3.png');
+}
+
+.icon.danger {
+    background-image: url('img/boom.png');
+}
+
+/* Медиазапросы для разных экранов */
+@media (max-width: 768px) {
+    #scoreboard {
+        font-size: 4vw;
+    }
+
+    button {
+        font-size: 4vw;
+        padding: 10px 20px;
+    }
+}
+
+@media (orientation: landscape) {
+    #scoreboard {
+        font-size: 3vw;
+    }
+}
+
