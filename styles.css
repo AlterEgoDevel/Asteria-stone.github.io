@@ -19,7 +19,7 @@ body, html {
     position: absolute;
     top: 10px;
     left: 10px;
-    font-size: 5vw; /* Увеличиваем текст для мобильных */
+    font-size: 5vw;
 }
 
 button {
@@ -28,7 +28,7 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 15px 30px;
-    font-size: 5vw; /* Кнопка станет больше на мобильных */
+    font-size: 5vw;
     background-color: #333;
     color: white;
     border: none;
@@ -42,23 +42,16 @@ button:hover {
 
 .icon {
     position: absolute;
-    animation: fall linear, rotate infinite;
-    width: 30px; /* Видимый размер иконки */
-    height: 30px; /* Видимый размер иконки */
+    animation: fall linear var(--fall-speed), rotate var(--rotate-speed) infinite;
+    width: 30px;
+    height: 30px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-
-    /* Увеличиваем кликабельную область */
-    padding: 20px; /* Добавляем невидимую область для клика */
-    box-sizing: content-box; /* Padding не влияет на визуальный размер */
-    cursor: pointer; /* Для десктопов */
-
-    /* Оптимизация для тач-устройств */
+    cursor: pointer;
     touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
+    outline: 30px solid transparent; /* Увеличенная область нажатия */
 }
-
 
 @keyframes rotate {
     from {
@@ -100,11 +93,78 @@ button:hover {
         font-size: 4vw;
         padding: 10px 20px;
     }
+
+    .icon {
+        width: 25px;
+        height: 25px;
+    }
 }
 
 @media (orientation: landscape) {
     #scoreboard {
         font-size: 3vw;
+    }
+}
+
+@media (max-width: 480px) {
+    #scoreboard {
+        font-size: 6vw;
+    }
+
+    button {
+        font-size: 5vw;
+        padding: 8px 16px;
+    }
+
+    .icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (orientation: portrait) {
+    .icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    #scoreboard {
+        font-size: 5vw;
+    }
+}
+
+
+
+
+
+
+
+
+
+/* Для звёзд */
+.star {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    border-radius: 50%; /* Делает звезду круглой */
+    opacity: 0;
+    animation: twinkle 2s linear forwards;
+}
+
+/* Анимация появления и исчезновения звезды */
+@keyframes twinkle {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.5);
     }
 }
 
