@@ -57,7 +57,7 @@ function spawnIcon() {
     icon.className = `icon ${iconType.className}`;
     icon.style.left = `${Math.random() * 100}vw`;
     icon.style.animationDuration = `${5 + Math.random() * 5}s`;
-    icon.style.setProperty('--fall-speed', `${5 + Math.random() * 5}s`);
+    icon.style.setProperty('--fall-speed', `${3 + Math.random() * 3}s`);
     icon.style.setProperty('--rotate-speed', `${2 + Math.random() * 3}s`);
 
     gameContainer.appendChild(icon);
@@ -79,22 +79,30 @@ function spawnIcon() {
 }
 
 function spawnStar() {
-    if (gameContainer.querySelectorAll('.star').length >= 50) return; // Ограничиваем количество звёзд
+    if (!gameRunning) return;
 
     const star = document.createElement('div');
     star.className = 'star';
-    star.style.left = `${Math.random() * 100}vw`;
-    star.style.top = `${Math.random() * 100}vh`;
 
-    const size = Math.random() * 3 + 2; // Размер от 2 до 5px
-    star.style.width = `${size}px`;
-    star.style.height = `${size}px`;
+    // Генерация случайных координат внутри игрового контейнера
+    const randomX = Math.random() * 100; // Случайное значение в процентах по ширине
+    const randomY = Math.random() * 100; // Случайное значение в процентах по высоте
 
+    // Установка позиции звезды
+    star.style.left = `${randomX}vw`;
+    star.style.top = `${randomY}vh`;
+
+
+    // Задание случайной продолжительности анимации
+    star.style.animationDuration = `${2 + Math.random() * 3}s`;
+
+    // Добавление звезды в контейнер
     gameContainer.appendChild(star);
 
-    // Удаление после завершения анимации
+    // Удаление звезды после завершения анимации
     star.addEventListener('animationend', () => star.remove());
 }
+
 
 function createPopEffect(x, y) {
     const pop = document.createElement('div');
