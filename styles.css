@@ -1,207 +1,207 @@
 /* Основной стиль для мобильных */
 body, html {
-    margin: 0;
-    padding: 0;
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-    touch-action: manipulation; /* Оптимизация для тач-устройств */
+    margin: 0; /* Убирает внешние отступы */
+    padding: 0; /* Убирает внутренние отступы */
+    background-color: black; /* Устанавливает черный фон */
+    color: white; /* Цвет текста белый */
+    font-family: Arial, sans-serif; /* Основной шрифт Arial */
+    overflow: hidden; /* Отключает прокрутку */
+    touch-action: manipulation; /* Оптимизация для тач-устройств, отключает нежелательные жесты */
 }
 
 #game-container {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+    position: relative; /* Для вложенных элементов */
+    width: 100vw; /* Занимает всю ширину окна */
+    height: 100vh; /* Занимает всю высоту окна */
 }
 
 #scoreboard {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 5vw;
+    position: absolute; /* Располагает элемент относительно родителя */
+    top: 10px; /* Отступ сверху */
+    left: 10px; /* Отступ слева */
+    font-size: 5vw; /* Размер текста в зависимости от ширины окна */
 }
 
 button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 15px 30px;
-    font-size: 5vw;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
+    position: absolute; /* Расположение кнопки в центре */
+    top: 50%; /* Центр по вертикали */
+    left: 50%; /* Центр по горизонтали */
+    transform: translate(-50%, -50%); /* Корректировка для точного центрирования */
+    padding: 15px 30px; /* Внутренние отступы */
+    font-size: 5vw; /* Размер текста */
+    background-color: #333; /* Темный фон */
+    color: white; /* Белый текст */
+    border: none; /* Убирает рамку */
+    cursor: pointer; /* Указывает, что элемент кликабельный */
+    border-radius: 10px; /* Закругление углов */
 }
 
 button:hover {
-    background-color: #555;
+    background-color: #555; /* Изменение фона при наведении */
 }
 
 /* Иконки (всех типов) */
 .icon {
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    cursor: pointer;
+    position: absolute; /* Для свободного перемещения */
+    width: 30px; /* Ширина иконки */
+    height: 30px; /* Высота иконки */
+    background-size: contain; /* Масштабирование до границ без обрезки */
+    background-repeat: no-repeat; /* Отключает повторение изображения */
+    background-position: center; /* Центрирование изображения */
+    cursor: pointer; /* Указывает на кликабельность */
     touch-action: manipulation; /* Оптимизация для тач-устройств */
-    pointer-events: all; /* Чтобы иконки были кликабельными */
-    animation: fall linear var(--fall-speed), rotate var(--rotate-speed) infinite;
+    pointer-events: all; /* Делает иконку активной для взаимодействий */
+    animation: fall linear var(--fall-speed), rotate var(--rotate-speed) infinite; /* Анимации падения и вращения */
 }
 
 .icon::before {
-    content: '';
-    position: absolute;
-    top: -15px; 
-    left: -15px; 
-    right: -15px; 
-    bottom: -15px; 
-    background: transparent; 
+    content: ''; /* Пустое содержание для дополнительного слоя */
+    position: absolute; /* Для увеличенной зоны клика */
+    top: -30px; /* Расширение зоны сверху */
+    left: -30px; /* Расширение зоны слева */
+    right: -30px; /* Расширение зоны справа */
+    bottom: -30px; /* Расширение зоны снизу */
+    background: transparent; /* Прозрачный фон */
 }
 
 /* Анимация вращения */
 @keyframes rotate {
     from {
-        transform: rotate(0deg);
+        transform: rotate(0deg); /* Начало вращения */
     }
     to {
-        transform: rotate(360deg);
+        transform: rotate(360deg); /* Конец вращения */
     }
 }
 
 /* Анимация падения иконок */
 @keyframes fall {
     from {
-        top: -50px;
+        top: -50px; /* Начальная позиция выше экрана */
     }
     to {
-        top: 100vh;
+        top: 100vh; /* Конечная позиция ниже экрана */
     }
 }
 
 /* Типы иконок */
 .icon.bonus1 {
-    background-image: url('img/Vector coin x.png');
+    background-image: url('img/Vector coin x.png'); /* Изображение бонуса 1 */
 }
 
 .icon.bonus5 {
-    background-image: url('img/Vector coin 3.png');
+    background-image: url('img/Vector coin 3.png'); /* Изображение бонуса 5 */
 }
 
 .icon.danger {
-    background-image: url('img/boom.png');
+    background-image: url('img/boom.png'); /* Изображение опасности */
 }
 
 /* Медиазапросы для разных экранов */
 @media (max-width: 768px) {
     #scoreboard {
-        font-size: 4vw;
+        font-size: 4vw; /* Уменьшение размера текста */
     }
 
     button {
-        font-size: 4vw;
-        padding: 10px 20px;
+        font-size: 4vw; /* Уменьшение текста кнопки */
+        padding: 10px 20px; /* Уменьшение отступов */
     }
 
     .icon {
-        width: 25px;
+        width: 25px; /* Уменьшение размера иконок */
         height: 25px;
     }
 }
 
 @media (orientation: landscape) {
     #scoreboard {
-        font-size: 3vw;
+        font-size: 3vw; /* Изменение размера текста в альбомной ориентации */
     }
 }
 
 @media (max-width: 480px) {
     #scoreboard {
-        font-size: 6vw;
+        font-size: 6vw; /* Увеличение текста на маленьких экранах */
     }
 
     button {
-        font-size: 5vw;
+        font-size: 5vw; /* Увеличение кнопок */
         padding: 8px 16px;
     }
 
     .icon {
-        width: 20px;
+        width: 20px; /* Ещё меньше иконки */
         height: 20px;
     }
 }
 
 @media (orientation: portrait) {
     .icon {
-        width: 40px;
+        width: 40px; /* Увеличение размера иконок */
         height: 40px;
     }
 
     #scoreboard {
-        font-size: 5vw;
+        font-size: 5vw; /* Средний размер текста */
     }
 }
 
 /* Для звёзд */
 .star {
-    position: absolute;
-    width: 5px;
+    position: absolute; /* Для свободного размещения */
+    width: 5px; /* Размер звезды */
     height: 5px;
-    background-color: white;
-    border-radius: 50%;
-    opacity: 0;
-    animation: twinkle 2s linear infinite;
+    background-color: white; /* Белый цвет */
+    border-radius: 50%; /* Круглая форма */
+    opacity: 0; /* Изначально невидимые */
+    animation: twinkle 2s linear infinite; /* Эффект мигания */
 }
 
 @keyframes twinkle {
     0% {
-        opacity: 0;
-        transform: scale(0.5);
+        opacity: 0; /* Невидимая звезда */
+        transform: scale(0.5); /* Уменьшенный размер */
     }
     50% {
-        opacity: 1;
-        transform: scale(1);
+        opacity: 1; /* Полностью видимая */
+        transform: scale(1); /* Нормальный размер */
     }
     100% {
-        opacity: 0;
+        opacity: 0; /* Снова невидимая */
         transform: scale(0.5);
     }
 }
 
 /* Эффект лопания пузыря */
 .pop-effect {
-    position: absolute;
-    pointer-events: none;
-    width: 30px;
-    height: 30px;
+    position: absolute; /* Свободное размещение */
+    pointer-events: none; /* Не взаимодействует с курсором */
+    width: 10px; /* Размер эффекта */
+    height: 10px;
 }
 
 .pop-piece {
-    position: absolute;
+    position: absolute; /* Части эффекта */
     width: 8px;
     height: 8px;
-    background-color: #0F2412;
-    border-radius: 50%;
-    opacity: 1;
-    animation: pop-piece 0.6s ease-out forwards;
+    background-color: #0F2412; /* Цвет частей */
+    border-radius: 50%; /* Круглая форма */
+    opacity: 1; /* Полностью видимый */
+    animation: pop-piece 0.6s ease-out forwards; /* Анимация разлёта */
 }
 
 @keyframes pop-piece {
     0% {
-        transform: scale(1) translate(0, 0);
+        transform: scale(1) translate(0, 0); /* Начальная позиция */
         opacity: 1;
     }
     50% {
-        transform: scale(1.5) translate(10px, -10px);
+        transform: scale(1.5) translate(5px, -5px); /* Максимальный разлёт */
         opacity: 0.7;
     }
     100% {
-        transform: scale(0) translate(20px, -20px);
+        transform: scale(0) translate(10px, -10px); /* Исчезновение */
         opacity: 0;
     }
 }
