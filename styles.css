@@ -40,19 +40,31 @@ button:hover {
     background-color: #555;
 }
 
+/* Иконки (всех типов) */
 .icon {
     position: absolute;
-    animation: fall linear var(--fall-speed), rotate var(--rotate-speed) infinite;
     width: 30px;
     height: 30px;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    touch-action: manipulation;
-    outline: 30px solid transparent; /* Увеличенная область нажатия */
+    touch-action: manipulation; /* Оптимизация для тач-устройств */
+    pointer-events: all; /* Чтобы иконки были кликабельными */
+    animation: fall linear var(--fall-speed), rotate var(--rotate-speed) infinite;
 }
 
+.icon::before {
+    content: '';
+    position: absolute;
+    top: -15px; 
+    left: -15px; 
+    right: -15px; 
+    bottom: -15px; 
+    background: transparent; 
+}
+
+/* Анимация вращения */
 @keyframes rotate {
     from {
         transform: rotate(0deg);
@@ -62,6 +74,7 @@ button:hover {
     }
 }
 
+/* Анимация падения иконок */
 @keyframes fall {
     from {
         top: -50px;
@@ -71,6 +84,7 @@ button:hover {
     }
 }
 
+/* Типы иконок */
 .icon.bonus1 {
     background-image: url('img/Vector coin x.png');
 }
@@ -133,26 +147,17 @@ button:hover {
     }
 }
 
-
-
-
-
-
-
-
-
 /* Для звёзд */
 .star {
     position: absolute;
     width: 5px;
     height: 5px;
     background-color: white;
-    border-radius: 50%; /* Делает звезду круглой */
+    border-radius: 50%;
     opacity: 0;
-    animation: twinkle 2s linear forwards;
+    animation: twinkle 2s linear infinite;
 }
 
-/* Анимация появления и исчезновения звезды */
 @keyframes twinkle {
     0% {
         opacity: 0;
@@ -168,3 +173,35 @@ button:hover {
     }
 }
 
+/* Эффект лопания пузыря */
+.pop-effect {
+    position: absolute;
+    pointer-events: none;
+    width: 30px;
+    height: 30px;
+}
+
+.pop-piece {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #0F2412;
+    border-radius: 50%;
+    opacity: 1;
+    animation: pop-piece 0.6s ease-out forwards;
+}
+
+@keyframes pop-piece {
+    0% {
+        transform: scale(1) translate(0, 0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5) translate(10px, -10px);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(0) translate(20px, -20px);
+        opacity: 0;
+    }
+}
