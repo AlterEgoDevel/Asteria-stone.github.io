@@ -1,16 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Падающие Иконки</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Генератор комментариев для строительного магазина</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Стили для контейнера */
+        .container {
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Стили для кнопок */
+        .copy-button, .generate-button {
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .copy-button:hover, .generate-button:hover {
+            background-color: #45a049;
+        }
+
+        /* Стили для текстового поля */
+        .comment-box {
+            width: 100%;
+            height: 120px;
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #f9f9f9;
+            resize: none;
+            box-sizing: border-box;
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            .copy-button, .generate-button {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .comment-box {
+                height: 100px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div id="game-container">
-        <div id="scoreboard">Очки: <span id="score">0</span></div>
-        <button id="start-button">Начать игру</button>
+
+    <div class="container">
+        <h1>Генератор комментариев</h1>
+
+        <!-- Кнопка для генерации комментария -->
+        <button class="generate-button" onclick="generateComment()">Сгенерировать комментарий</button>
+
+        <!-- Текстовое поле для отображения комментария -->
+        <textarea id="comment-box" class="comment-box" readonly></textarea>
+
+        <!-- Кнопка для копирования комментария -->
+        <button class="copy-button" onclick="copyComment()">Копировать комментарий</button>
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Массив с возможными комментариями для строительного магазина
+        const comments = [
+            "Отличное качество материалов! Все как описано, быстро доставили.",
+            "Очень удобный сервис, заказ пришел вовремя, товар соответствует описанию.",
+            "Большой выбор строительных материалов и инструментов. Понравился магазин!",
+            "Приятные цены и отличное обслуживание. Заказал в этом магазине несколько раз.",
+            "Доставили все вовремя, а качество материалов просто на высоте!",
+            "Нашел все, что нужно для ремонта. Рекомендую этот магазин всем!",
+            "Покупаю здесь не первый раз. Всегда все доставляют быстро и качественно.",
+            "Очень удобный сайт и быстрая доставка. Большой выбор товаров.",
+            "Качество товаров отличное, все подошло для ремонта дома.",
+            "Товары отличного качества, сервис на высшем уровне! Очень доволен покупкой."
+        ];
+
+        // Функция для генерации случайного комментария
+        function generateComment() {
+            // Получаем случайный комментарий из массива
+            const randomIndex = Math.floor(Math.random() * comments.length);
+            const randomComment = comments[randomIndex];
+
+            // Отображаем комментарий в текстовом поле
+            document.getElementById('comment-box').value = randomComment;
+        }
+
+        // Функция для копирования текста из текстового поля в буфер обмена
+        function copyComment() {
+            // Получаем элемент текстового поля
+            const commentBox = document.getElementById('comment-box');
+            
+            // Выбираем текст в поле
+            commentBox.select();
+            commentBox.setSelectionRange(0, 99999); // Для мобильных устройств
+            
+            // Копируем выбранный текст в буфер обмена
+            document.execCommand('copy');
+            
+            // Сообщение об успешном копировании
+            alert('Комментарий скопирован в буфер обмена!');
+        }
+    </script>
+
 </body>
 </html>
