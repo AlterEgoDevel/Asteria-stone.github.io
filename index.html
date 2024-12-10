@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Игра</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="menu" class="menu">
+    <h1>Игра</h1>
+    <button id="startButton">Начать игру</button>
+  </div>
+  <div id="game" class="game">
+    <div id="score" class="score">Очки: 0</div>
+    <div id="player" class="player"></div>
+  </div>
+  <div id="gameOverMenu" class="menu" style="display: none;">
+    <h1>Игра окончена</h1>
+    <p id="finalScore"></p>
+    <button id="restartButton">Сначала</button>
+    <button id="backToMenuButton">Назад в меню</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
