@@ -1,4 +1,4 @@
-/* style.css */
+/* Основной стиль страницы */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -6,6 +6,7 @@ body {
     overflow: hidden;
   }
   
+  /* Меню (начальное и конечное) */
   .menu {
     display: flex;
     flex-direction: column;
@@ -29,6 +30,7 @@ body {
     background-color: #0056b3;
   }
   
+  /* Игровая зона */
   .game {
     display: none;
     position: relative;
@@ -38,6 +40,7 @@ body {
     overflow: hidden;
   }
   
+  /* Самолётик игрока */
   .player {
     position: absolute;
     bottom: 50px;
@@ -49,8 +52,14 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    transition: transform 0.2s ease; /* Плавный переход для визуализации */
   }
   
+  .player.pressed {
+    transform: translateX(-50%) scale(1.1); /* Увеличение и выдвижение вперёд */
+  }
+  
+  /* Объекты (падающие) */
   .object {
     position: absolute;
     top: -50px;
@@ -69,6 +78,7 @@ body {
     }
   }
   
+  /* Конечное меню */
   #gameOverMenu {
     display: none;
     flex-direction: column;
@@ -83,6 +93,7 @@ body {
     color: white;
   }
   
+  /* Счёт игрока */
   .score {
     position: absolute;
     top: 10px;
