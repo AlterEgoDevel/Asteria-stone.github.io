@@ -52,12 +52,13 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    transition: transform 0.3s ease; /* Плавность для всех изменений transform */
 }
 
   
   .player.pressed {
     transform: scale(1.1); /* Увеличиваем только размер */
-    transform: translate(-0%, -100px); /* Смещение вверх на 50px */
+    transform: translate(-0%, -75px); /* Смещение вверх на 75px */
   }
   
   /* Объекты (падающие) */
