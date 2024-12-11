@@ -65,7 +65,7 @@ body {
     transform: none; /* Убираем лишний translateX */
     width: 50px;
     height: 60px;
-    background-image: url('img/airforse.png');
+    background-image: url('img/plane2.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
