@@ -44,20 +44,19 @@ body {
   .player {
     position: absolute;
     bottom: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 55px;
-    height: 70px;
+    left: calc(50% - 25px); /* Сразу учитываем ширину 50px */
+    transform: none; /* Убираем лишний translateX */
+    width: 50px;
+    height: 60px;
     background-image: url('img/airforse.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    transition: transform 0.2s ease; /* Плавный переход для визуализации */
-    border: 1px solid red; /* Отображение границ */
-  }
+}
+
   
   .player.pressed {
-    transform: translateX(-50%) scale(1.1); /* Увеличение и выдвижение вперёд */
+    transform: scale(1.1); /* Увеличиваем только размер */
   }
   
   /* Объекты (падающие) */
@@ -70,10 +69,6 @@ body {
     animation: fall linear;
   }
 
-  .object {
-    border: 1px solid red; /* Отображение границ */
-  }
-  
   
   @keyframes fall {
     0% {
@@ -109,4 +104,3 @@ body {
     font-weight: bold;
     z-index: 10;
   }
-  
