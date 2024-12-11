@@ -244,3 +244,22 @@ function movePlayer(x, y) {
 }
 
 
+function createStars(containerId, numStars = 100) {
+  const container = document.getElementById(containerId);
+
+  for (let i = 0; i < numStars; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.animationDelay = `${Math.random() * 3}s`; // Рандомная задержка мерцания
+    container.appendChild(star);
+  }
+}
+
+// Звёзды в меню
+createStars('stars', 100);
+
+// Звёзды в игре
+createStars('gameStars', 100);
+
