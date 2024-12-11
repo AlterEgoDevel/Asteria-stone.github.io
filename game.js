@@ -53,6 +53,12 @@ function startGame() {
   objectsPerSpawn = 1; // Сбрасываем количество объектов
   lastMilestone = 0;   // Сбрасываем порог увеличения сложности
 
+  // Устанавливаем начальное положение самолёта
+  player.style.left = `calc(50% - ${player.offsetWidth / 2}px)`; // Центр по горизонтали
+  player.style.bottom = '50px'; // 50px от нижнего края
+  player.style.top = ''; // Сбрасываем, если ранее использовалось
+  player.style.right = ''; // Сбрасываем, если ранее использовалось
+
   scoreDisplay.textContent = `Очки: ${score}`;
   gameInterval = setInterval(spawnObjects, 1000); // Создаём объекты каждую секунду
   activeIntervals.push(gameInterval); // Добавляем в отслеживание
@@ -61,12 +67,21 @@ function startGame() {
 }
 
 
+
+
 // Сброс игры
 function resetGame() {
   clearAllIntervals(); // Очищаем все интервалы и таймауты
   document.querySelectorAll('.object').forEach((obj) => obj.remove()); // Удаляем все объекты
   game.style.display = 'none';
+
+  // Сбрасываем позицию самолёта
+  player.style.left = `calc(50% - ${player.offsetWidth / 2}px)`; // Центр по горизонтали
+  player.style.bottom = '50px'; // 50px от нижнего края
+  player.style.top = ''; // Сбрасываем, если ранее использовалось
+  player.style.right = ''; // Сбрасываем, если ранее использовалось
 }
+
 
 // Увеличение сложности каждые 10 секунд
 function increaseDifficulty() {
@@ -206,20 +221,31 @@ document.addEventListener('touchend', () => {
 document.addEventListener('touchmove', (e) => {
   if (isDragging) {
     const touch = e.touches[0];
-    movePlayer(touch.clientX, touch.clientY);
+    const gameRect = game.getBoundingClientRect();
+
+    // Учет смещения внутри игрового поля
+    const touchX = touch.clientX - gameRect.left;
+    const touchY = touch.clientY - gameRect.top;
+
+    movePlayer(touchX, touchY);
+    e.preventDefault(); // Предотвращает нежелательную прокрутку
   }
 });
+
 
 // Перемещение самолёта
 function movePlayer(x, y) {
   const gameRect = game.getBoundingClientRect();
-  const newX = x - gameRect.left;
-  const newY = y - gameRect.top;
+  const playerWidth = player.offsetWidth;
+  const playerHeight = player.offsetHeight;
 
-  if (newX > 25 && newX < gameRect.width - 25) {
-    player.style.left = `${newX - 25}px`;
-  }
-  if (newY > 25 && newY < gameRect.height - 25) {
-    player.style.top = `${newY - 25}px`;
-  }
+  // Перемещение по оси X
+  const newX = Math.max(0, Math.min(x - gameRect.left - playerWidth / 2, gameRect.width - playerWidth));
+  player.style.left = `${newX}px`;
+
+  // Перемещение по оси Y
+  const newY = Math.max(0, Math.min(y - gameRect.top - playerHeight / 2, gameRect.height - playerHeight));
+  player.style.top = `${newY}px`;
 }
+
+
