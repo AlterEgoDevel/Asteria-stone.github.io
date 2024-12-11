@@ -57,6 +57,7 @@ body {
   
   .player.pressed {
     transform: scale(1.1); /* Увеличиваем только размер */
+    transform: translate(-0%, -100px); /* Смещение вверх на 50px */
   }
   
   /* Объекты (падающие) */
