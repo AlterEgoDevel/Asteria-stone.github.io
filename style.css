@@ -8,7 +8,7 @@ body, html {
   box-sizing: border-box;
   font-family: Arial, sans-serif;
   background-color: #000000;
-  overflow: hidden;
+  overflow: visible;
   user-select: none; /* Отключить выделение текста */
   -webkit-user-select: none; /* Для браузеров на базе WebKit */
   -moz-user-select: none; /* Для Firefox */
@@ -62,6 +62,7 @@ button:hover {
   height: calc(100% - env(safe-area-inset-top) - env(safe-area-inset-bottom));
   background-color: #000;
   overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Самолётик игрока */
@@ -77,6 +78,7 @@ button:hover {
   background-repeat: no-repeat;
   background-position: center;
   transition: transform 0.3s ease; /* Плавность для всех изменений transform */
+  bottom: calc(50px + env(safe-area-inset-bottom));
 }
 
 .player .hitbox {
