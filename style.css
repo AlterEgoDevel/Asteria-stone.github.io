@@ -2,8 +2,19 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: #000000;
   overflow: hidden;
+  user-select: none; /* Отключить выделение текста */
+  -webkit-user-select: none; /* Для браузеров на базе WebKit */
+  -moz-user-select: none; /* Для Firefox */
+  -ms-user-select: none; /* Для IE10+ */
+}
+
+.menu, .game {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 
@@ -20,8 +31,6 @@ html, body {
   height: 100vh; /* Высота экрана */
   width: 100%;
 }
-
-
 
 /* Меню (начальное и конечное) */
 .menu {
@@ -99,6 +108,12 @@ button:hover {
   /* border: 1px solid red; */
 }
 
+/* Самолёт и падающие объекты */
+.player, .object {
+  position: absolute;
+  z-index: 2; /* Размещаем над звёздами */
+}
+
 
 @keyframes fall {
   0% {
@@ -134,3 +149,41 @@ button:hover {
   font-weight: bold;
   z-index: 10;
 }
+
+
+/* Контейнер звёзд */
+#stars, #gameStars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Расположить под объектами игры */
+  pointer-events: none; /* Игнорирование взаимодействий */
+}
+
+/* Одна звезда */
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0;
+  animation: starTwinkle 3s infinite;
+}
+
+
+
+/* Анимация мерцания */
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
