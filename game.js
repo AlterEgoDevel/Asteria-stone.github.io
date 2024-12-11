@@ -111,12 +111,12 @@ function spawnObjects() {
       // Определяем тип объекта
       const objectType = Math.random();
       if (objectType < 0.4) {
-        object.style.backgroundImage = "url('img/spacex1.png')";
+        object.style.backgroundImage = "url('img/spacex4.png')";
         object.style.width = "20px";
         object.style.height = "50px";
         object.dataset.type = 'danger';
       } else if (objectType < 0.7) {
-        object.style.backgroundImage = "url('img/spacex2.png')";
+        object.style.backgroundImage = "url('img/spacex5.png')";
         object.style.width = "20px";
         object.style.height = "50px";
         object.dataset.type = 'danger';
