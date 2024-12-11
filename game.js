@@ -153,30 +153,24 @@ function spawnObjects() {
 // Проверка столкновений
 function checkCollision(object) {
   const interval = setInterval(() => {
-    const playerRect = player.getBoundingClientRect();
+    // Берём хитбокс самолётика
+    const playerHitbox = player.querySelector('.hitbox').getBoundingClientRect();
     const objectRect = object.getBoundingClientRect();
 
     if (
-      playerRect.left < objectRect.right &&
-      playerRect.right > objectRect.left &&
-      playerRect.top < objectRect.bottom &&
-      playerRect.bottom > objectRect.top
+      playerHitbox.left < objectRect.right &&
+      playerHitbox.right > objectRect.left &&
+      playerHitbox.top < objectRect.bottom &&
+      playerHitbox.bottom > objectRect.top
     ) {
       const type = object.dataset.type;
 
       if (type === 'danger') {
-        endGame(); // Сбрасываем игру и количество объектов
+        endGame(); // Завершение игры
       } else if (type === 'coin') {
         score += 10;
       } else if (type === 'rare-coin') {
         score += 100;
-      }
-
-      // Увеличиваем количество объектов каждые 500 очков
-      if (score >= lastMilestone + 500) {
-        lastMilestone += 500;
-        objectsPerSpawn++;
-        console.log(`Достигнут порог ${lastMilestone}. Объектов за раз: ${objectsPerSpawn}`);
       }
 
       scoreDisplay.textContent = `Очки: ${score}`;
@@ -185,8 +179,9 @@ function checkCollision(object) {
     }
   }, 50);
 
-  activeIntervals.push(interval); // Добавляем в отслеживание
+  activeIntervals.push(interval);
 }
+
 
 // Управление самолётом (мышь и касания)
 let isDragging = false;
