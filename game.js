@@ -17,6 +17,7 @@ let speed = 2;
 let objectsPerSpawn = 1; // Количество объектов за раз
 let lastMilestone = 0; // Для отслеживания порога очков
 
+let activeIntervals = []; // Массив для отслеживания активных интервалов и таймаутов
 
 // Обработчик кнопки "Начать игру"
 startButton.addEventListener('click', startGame);
@@ -29,45 +30,66 @@ backToMenuButton.addEventListener('click', () => {
   resetGame();
 });
 
+// Очищаем все интервалы и таймауты
+function clearAllIntervals() {
+  activeIntervals.forEach((id) => {
+    clearInterval(id);
+    clearTimeout(id);
+  });
+  activeIntervals = []; // Очищаем массив
+}
+
 // Начало игры
 function startGame() {
+  clearAllIntervals(); // Очищаем интервалы и таймауты
+  document.querySelectorAll('.object').forEach((obj) => obj.remove()); // Удаляем оставшиеся объекты
   menu.style.display = 'none';
   gameOverMenu.style.display = 'none';
   game.style.display = 'block';
+
+  // Сброс переменных игры
   score = 0;
   speed = 2;
+  objectsPerSpawn = 1; // Сбрасываем количество объектов
+  lastMilestone = 0;   // Сбрасываем порог увеличения сложности
+
   scoreDisplay.textContent = `Очки: ${score}`;
   gameInterval = setInterval(spawnObjects, 1000); // Создаём объекты каждую секунду
+  activeIntervals.push(gameInterval); // Добавляем в отслеживание
+
   increaseDifficulty();
 }
 
+
 // Сброс игры
 function resetGame() {
-  clearInterval(gameInterval);
-  document.querySelectorAll('.object').forEach(obj => obj.remove());
+  clearAllIntervals(); // Очищаем все интервалы и таймауты
+  document.querySelectorAll('.object').forEach((obj) => obj.remove()); // Удаляем все объекты
   game.style.display = 'none';
 }
 
 // Увеличение сложности каждые 10 секунд
 function increaseDifficulty() {
-  setInterval(() => {
+  const difficultyInterval = setInterval(() => {
     speed += 0.5; // Увеличиваем скорость падения
   }, 10000);
+  activeIntervals.push(difficultyInterval); // Отслеживаем интервал
 }
 
 // Завершение игры
 function endGame() {
-  clearInterval(gameInterval);
+  clearAllIntervals(); // Очищаем все интервалы и таймауты
+  document.querySelectorAll('.object').forEach((obj) => obj.remove()); // Удаляем все объекты
   game.style.display = 'none';
   gameOverMenu.style.display = 'flex';
   finalScore.textContent = `Ваш счет: ${score}`;
+  objectsPerSpawn = 1; // Сбрасываем количество объектов
 }
 
 // Создание падающих объектов
 function spawnObjects() {
   for (let i = 0; i < objectsPerSpawn; i++) {
-    // Создаём объект с задержкой
-    setTimeout(() => {
+    const timeout = setTimeout(() => {
       const object = document.createElement('div');
       object.classList.add('object');
 
@@ -75,13 +97,13 @@ function spawnObjects() {
       const objectType = Math.random();
       if (objectType < 0.4) {
         object.style.backgroundImage = "url('img/spacex1.png')";
-        object.style.width = "25px";
-        object.style.height = "60px";
+        object.style.width = "20px";
+        object.style.height = "50px";
         object.dataset.type = 'danger';
       } else if (objectType < 0.7) {
         object.style.backgroundImage = "url('img/spacex2.png')";
-        object.style.width = "25px";
-        object.style.height = "60px";
+        object.style.width = "20px";
+        object.style.height = "50px";
         object.dataset.type = 'danger';
       } else if (objectType < 0.9) {
         object.style.backgroundImage = "url('img/Vector coin 3.png')";
@@ -91,11 +113,11 @@ function spawnObjects() {
       } else {
         object.style.backgroundImage = "url('img/Vector coin x.png')";
         object.style.width = "30px";
-        object.style.height = "30px";
+        object.style.height = "24px";
         object.dataset.type = 'rare-coin';
       }
 
-      // Задаём случайное положение и длительность анимации
+      // Позиция и анимация
       object.style.left = Math.random() * (game.clientWidth - 50) + 'px';
       object.style.animationDuration = `${Math.max(2, 6 - speed)}s`;
       object.style.top = '-50px';
@@ -107,11 +129,11 @@ function spawnObjects() {
       });
 
       checkCollision(object);
-    }, Math.random() * 1000); // Случайная задержка до 1000 мс
+    }, Math.random() * 1000); // Случайная задержка
+
+    activeIntervals.push(timeout); // Добавляем в отслеживание
   }
 }
-
-
 
 // Проверка столкновений
 function checkCollision(object) {
@@ -128,18 +150,18 @@ function checkCollision(object) {
       const type = object.dataset.type;
 
       if (type === 'danger') {
-        endGame();
+        endGame(); // Сбрасываем игру и количество объектов
       } else if (type === 'coin') {
         score += 10;
       } else if (type === 'rare-coin') {
         score += 100;
       }
 
-      // Увеличиваем количество объектов при наборе каждых 500 очков
+      // Увеличиваем количество объектов каждые 500 очков
       if (score >= lastMilestone + 500) {
         lastMilestone += 500;
         objectsPerSpawn++;
-        console.log(`Новый порог: ${lastMilestone}. Объектов за раз: ${objectsPerSpawn}`);
+        console.log(`Достигнут порог ${lastMilestone}. Объектов за раз: ${objectsPerSpawn}`);
       }
 
       scoreDisplay.textContent = `Очки: ${score}`;
@@ -147,13 +169,13 @@ function checkCollision(object) {
       clearInterval(interval);
     }
   }, 50);
-}
 
+  activeIntervals.push(interval); // Добавляем в отслеживание
+}
 
 // Управление самолётом (мышь и касания)
 let isDragging = false;
 
-// Добавляем эффект при нажатии
 player.addEventListener('mousedown', () => {
   isDragging = true;
   player.classList.add('pressed'); // Визуализация нажатия
