@@ -57,7 +57,7 @@ class OrbitalParticle {
 
     draw() {
         const x = canvas.width / 2 + Math.cos(this.angle) * this.distance;
-        const y = canvas.height / 2 + Math.sin(this.angle) * this.distance * 0.7; // Сжатие по оси Y для наклона
+        const y = canvas.height / 2 + Math.sin(this.angle) * this.distance * 0.8; // Сжатие по оси Y для наклона
 
         ctx.beginPath();
         ctx.arc(x, y, this.size, 0, Math.PI * 2);
