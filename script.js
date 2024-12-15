@@ -5,22 +5,22 @@ const ctx = canvas.getContext('2d');
 
 // Адаптируем размеры canvas под экран
 function resizeCanvas() {
-    canvas.width = window.innerWidth * window.devicePixelRatio;
-    canvas.height = window.innerHeight * window.devicePixelRatio;
-    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    const pixelRatio = window.devicePixelRatio || 1;
+    canvas.width = window.innerWidth * pixelRatio;
+    canvas.height = window.innerHeight * pixelRatio;
+    ctx.scale(pixelRatio, pixelRatio);
+
+    sphereRadius = Math.min(window.innerWidth, window.innerHeight) / (isMobile ? 5 : 3); // Перерасчет радиуса
 }
+const isMobile = window.innerWidth <= 768; // Проверяем устройство
+let sphereRadius = Math.min(window.innerWidth, window.innerHeight) / (isMobile ? 5 : 3);
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
 let balance = 0;
 const particles = [];
 const orbitalParticles = [];
-
-// Динамический радиус сферы
-const isMobile = window.innerWidth <= 768;
-let sphereRadius = Math.min(window.innerWidth, window.innerHeight) / (isMobile ? 4 : 3); // Меньший радиус для мобильных
 const maxOrbitalParticles = 300;
-let rotationSpeed = 0.001; // Уменьшенная скорость вращения
 
 // Инициализируем баланс из localStorage
 const storedBalance = localStorage.getItem('balance');
@@ -50,7 +50,7 @@ class Particle {
     update() {
         this.x += this.velocity.x;
         this.y += this.velocity.y;
-        this.alpha -= 0.005; // Более плавное исчезновение
+        this.alpha -= 0.005;
     }
 }
 
@@ -59,15 +59,15 @@ class OrbitalParticle {
         this.angle = angle;
         this.distance = distance;
         this.size = size;
-        this.alpha = 0; // Изначально прозрачный
-        this.orbitalSpeed = Math.random() * 0.005 + 0.001; // Уменьшена скорость
+        this.alpha = 0;
+        this.orbitalSpeed = Math.random() * 0.005 + 0.001;
         this.isDetached = false;
-        this.isDim = isDim; // Флаг тусклости
+        this.isDim = isDim;
     }
 
     draw() {
         const x = canvas.width / 2 / window.devicePixelRatio + Math.cos(this.angle) * this.distance;
-        const y = canvas.height / 2 / window.devicePixelRatio + Math.sin(this.angle) * this.distance * 0.8; // Сжатие по оси Y для наклона
+        const y = canvas.height / 2 / window.devicePixelRatio + Math.sin(this.angle) * this.distance * 0.8;
 
         ctx.beginPath();
         ctx.arc(x, y, this.size, 0, Math.PI * 2);
@@ -80,10 +80,10 @@ class OrbitalParticle {
     update() {
         if (!this.isDetached) {
             this.angle += this.orbitalSpeed;
-            if (this.alpha < 1) this.alpha += 0.01; // Плавное появление
+            if (this.alpha < 1) this.alpha += 0.01;
         } else {
             this.distance += 1;
-            this.alpha -= 0.01; // Плавное исчезновение
+            this.alpha -= 0.01;
         }
     }
 }
@@ -92,8 +92,8 @@ function generateOrbitalParticles(count) {
     while (orbitalParticles.length < count) {
         const angle = Math.random() * Math.PI * 2;
         const distance = Math.random() * sphereRadius;
-        const size = Math.random() * 2 + 1; // Уменьшен размер частиц
-        const isDim = Math.random() < 0.3; // 30% частиц будут тусклыми
+        const size = Math.random() * 2 + 1;
+        const isDim = Math.random() < 0.3;
         orbitalParticles.push(new OrbitalParticle(angle, distance, size, isDim));
     }
 }
@@ -103,7 +103,6 @@ generateOrbitalParticles(maxOrbitalParticles);
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Рисуем и обновляем орбитальные частицы
     orbitalParticles.forEach((particle, index) => {
         particle.update();
         if (particle.alpha <= 0) {
@@ -113,12 +112,10 @@ function animate() {
         }
     });
 
-    // Восстанавливаем орбитальные частицы случайным образом
     if (Math.random() < 0.05) {
         generateOrbitalParticles(maxOrbitalParticles);
     }
 
-    // Рисуем и обновляем оторвавшиеся частицы
     particles.forEach((particle, index) => {
         particle.update();
         if (particle.alpha <= 0) {
@@ -132,16 +129,11 @@ function animate() {
 }
 
 canvas.addEventListener('click', (event) => {
-    const clickX = event.clientX;
-    const clickY = event.clientY;
-
-    // Увеличение баланса
     balance++;
     balanceDisplay.textContent = balance;
     localStorage.setItem('balance', balance);
 
-    // Удаляем случайную часть орбитальных частиц
-    const numDetached = Math.floor(Math.random() * 10) + 1; // От 1 до 10 частиц
+    const numDetached = Math.floor(Math.random() * 10) + 1;
     let detachedCount = 0;
 
     orbitalParticles.forEach((particle) => {
