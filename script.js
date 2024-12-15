@@ -2,13 +2,23 @@
 const balanceDisplay = document.getElementById('balance');
 const canvas = document.getElementById('sphereCanvas');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+// Адаптируем размеры canvas под экран
+function resizeCanvas() {
+    canvas.width = window.innerWidth * window.devicePixelRatio;
+    canvas.height = window.innerHeight * window.devicePixelRatio;
+    ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
 
 let balance = 0;
 const particles = [];
 const orbitalParticles = [];
-const sphereRadius = 300; // Увеличенный радиус сферы
+
+// Динамический радиус сферы
+const isMobile = window.innerWidth <= 768;
+let sphereRadius = Math.min(window.innerWidth, window.innerHeight) / (isMobile ? 4 : 3); // Меньший радиус для мобильных
 const maxOrbitalParticles = 300;
 let rotationSpeed = 0.001; // Уменьшенная скорость вращения
 
@@ -56,8 +66,8 @@ class OrbitalParticle {
     }
 
     draw() {
-        const x = canvas.width / 2 + Math.cos(this.angle) * this.distance;
-        const y = canvas.height / 2 + Math.sin(this.angle) * this.distance * 0.8; // Сжатие по оси Y для наклона
+        const x = canvas.width / 2 / window.devicePixelRatio + Math.cos(this.angle) * this.distance;
+        const y = canvas.height / 2 / window.devicePixelRatio + Math.sin(this.angle) * this.distance * 0.8; // Сжатие по оси Y для наклона
 
         ctx.beginPath();
         ctx.arc(x, y, this.size, 0, Math.PI * 2);
@@ -82,7 +92,7 @@ function generateOrbitalParticles(count) {
     while (orbitalParticles.length < count) {
         const angle = Math.random() * Math.PI * 2;
         const distance = Math.random() * sphereRadius;
-        const size = Math.random() * 4 + 1; // Увеличен размер частиц
+        const size = Math.random() * 2 + 1; // Уменьшен размер частиц
         const isDim = Math.random() < 0.3; // 30% частиц будут тусклыми
         orbitalParticles.push(new OrbitalParticle(angle, distance, size, isDim));
     }
