@@ -11,14 +11,16 @@ let sphereRadius = Math.min(window.innerWidth, window.innerHeight) / (isMobile ?
 
 // Адаптируем размеры canvas под экран
 function resizeCanvas() {
-    const pixelRatio = window.devicePixelRatio || 1; // Учет плотности пикселей экрана
-    canvas.width = window.innerWidth * pixelRatio; // Ширина canvas в пикселях
-    canvas.height = window.innerHeight * pixelRatio; // Высота canvas в пикселях
-    ctx.scale(pixelRatio, pixelRatio); // Масштабируем контекст для обеспечения четкости
+    const pixelRatio = window.devicePixelRatio || 1;
+    const size = Math.min(window.innerWidth, window.innerHeight) * 0.8; // Ограничение по меньшей стороне
 
-    // Обновляем радиус сферы при изменении размеров экрана
-    sphereRadius = Math.min(window.innerWidth, window.innerHeight) / (isMobile ? 3.5 : 2.5);
+    canvas.width = size * pixelRatio; // Внутренняя ширина канваса
+    canvas.height = size * pixelRatio; // Внутренняя высота канваса
+    ctx.scale(pixelRatio, pixelRatio); // Масштабирование контекста
+
+    sphereRadius = size / 2.5; // Пересчитываем радиус сферы
 }
+
 
 // Первичная настройка и обновление размеров при изменении окна
 resizeCanvas();
