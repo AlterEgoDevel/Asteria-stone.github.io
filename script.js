@@ -72,7 +72,8 @@ class OrbitalParticle {
     draw() {
         // Вычисляем положение частицы в орбите
         const x = canvas.width / 2 / window.devicePixelRatio + Math.cos(this.angle) * this.distance;
-        const y = canvas.height / 2 / window.devicePixelRatio + Math.sin(this.angle) * this.distance * 0.8; // Сжатие по оси Y
+        const y = canvas.height / 2 + Math.sin(this.angle) * this.distance * (isMobile ? 0.9 : 0.8);  // Сжатие по оси Y
+
 
         ctx.beginPath(); // Начинаем рисовать
         ctx.arc(x, y, this.size, 0, Math.PI * 2); // Рисуем круг (частицу)
