@@ -1,0 +1,327 @@
+/* Global Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* Основные стили для всей страницы */
+body {
+    margin: 0; /* Убирает стандартные отступы браузера */
+    padding: 0; /* Убирает внутренние отступы */
+    display: flex; /* Центрирование элементов по горизонтали и вертикали */
+    justify-content: center; /* Центрирование по горизонтали */
+    align-items: center; /* Центрирование по вертикали */
+    height: 100vh; /* Высота равна высоте окна браузера */
+    background-color: #191109; /* Темный фон */
+    font-family: 'Roboto', sans-serif; /* Основной шрифт страницы */
+}
+
+/* Навигационная панель ======================================================= */
+.navigation {
+    height: 100px; /* Высота панели */
+    width: 100%; /* Ширина на всю ширину экрана */
+    max-width: 390px; /* Максимальная ширина для ограничения */
+    background-color: #191109; /* Цвет фона панели */
+    display: flex; /* Включает флекс-бокс для элементов */
+    justify-content: space-around; /* Равное расстояние между элементами */
+    position: fixed; /* Закрепление панели */
+    bottom: 0; /* Прижимаем панель к нижней границе */
+    z-index: 10; /* Отображение поверх других элементов */
+    padding: 0; /* Внешние отступы для удобства */
+    box-sizing: border-box; /* Учет рамок и отступов */
+}
+
+/* Нижняя рамка и скругления панели */
+.navigation-border {
+    border-bottom-left-radius: 30px; /* Скругление нижнего левого угла */
+    border-bottom-right-radius: 30px; /* Скругление нижнего правого угла */
+    border-bottom: 5px solid #BEA17A; /* Нижняя рамка */
+    border-left: 5px solid #BEA17A; /* Левая рамка */
+    border-right: 5px solid #BEA17A; /* Правая рамка */
+    width: 100%; /* Ширина панели */
+    min-width: auto;
+    height: 40px; /* Высота панели */
+    background-color: #191109; /* Цвет фона */
+    padding: 0px 15px 0px 15px; /* Внутренние отступы */
+    position: relative; /* Для управления внутренними элементами */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/* Меню навигации */
+.navigation-menu {
+    position: absolute; /* Абсолютное позиционирование внутри панели */
+    height: 100px; /* Высота меню */
+    width: 100%; /* Ширина совпадает с панелью */
+    display: flex; /* Флекс-бокс для элементов меню */
+    justify-content: center; /* Центрирование элементов меню */
+    gap: 3px; /* Расстояние между элементами меню */
+}
+
+/* Элементы меню */
+.nav-item {
+    width: 60px; /* Ширина элемента */
+    height: 80px; /* Высота элемента */
+    background-color: #191109; /* Цвет фона */
+    border: 3px solid #BEA17A; /* Обводка элемента */
+
+}
+
+/* Ховер-эффект для элементов меню ===========================================*/
+.nav-item:hover {
+    background-color: #5F4A32; /* Изменение фона при наведении */
+}
+
+/* Первый элемент меню со скруглениями */
+.nav-item-1 {
+    border-top-left-radius: 30px; /* Скругление верхнего левого угла */
+    border-bottom-left-radius: 30px; /* Скругление нижнего левого угла */
+}
+
+/* Последний элемент меню со скруглениями */
+.nav-item-5 {
+    border-top-right-radius: 30px; /* Скругление верхнего правого угла */
+    border-bottom-right-radius: 30px; /* Скругление нижнего правого угла */
+}
+
+/* Контейнер для фона */
+.background-container {
+    background-color: #191109; /* Цвет фона */
+    max-width: 390px; /* Ширина контейнера */
+    width: 100%;
+    height: 100%; /* Автоматическая высота */
+}
+
+/* Внутренний фон */
+.background {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Граница фона */
+.background-border {
+    height: 100%; /* Автоматическая высота */
+    min-height: 100%;
+    max-width: 390px; /* Ширина контейнера */
+    border-left: 5px solid #BEA17A; /* Левая рамка */
+    border-right: 5px solid #BEA17A; /* Правая рамка */
+    border-top: 5px solid #BEA17A; /* Верхняя рамка */
+    border-top-left-radius: 30px; /* Скругление верхнего левого угла */
+    border-top-right-radius: 30px; /* Скругление верхнего правого угла */
+    padding: 0; /* Отступ сверху и по бокам */
+    color: rgb(151, 151, 151); /* Цвет текста */
+    font-size: 10px; /* Размер текста */
+    margin-right: 10px; /* Отступ справа */
+    margin-left: 10px; /* Отступ слева */
+    margin-top: 66px;
+    background-color: #191109; /* Цвет фона контейнера */
+    box-sizing: border-box; /* Учет рамок и отступов */
+}
+
+/* =============================================================================== */
+
+/* Контейнер для информации о пользователе */
+.user-info-container {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 26px; /* Отступ от верхней части экрана */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Смещение для центрирования */
+    width: 300px; /* Ширина контейнера */
+    height: 80px; /* Высота контейнера */
+    background-color: #191109; /* Цвет фона */
+    border: 3px solid #BEA17A; /* Цвет рамки */
+    border-radius: 30px; /* Закругление углов */
+    display: flex; /* Флекс-бокс для размещения элементов */
+    align-items: center; /* Выравнивание по вертикали */
+    padding: 0 6px; /* Внутренние отступы */
+    z-index: 20; /* Поверх остальных элементов */
+    box-sizing: border-box; /* Учет рамки в размерах */
+}
+
+/* Аватар пользователя */
+.avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%; /* Круглая форма */
+    background-color: #BEA17A; /* Цвет для заполнения (замените на изображение, если нужно) */
+    margin-right: 15px; /* Отступ справа */
+}
+
+/* Информация о пользователе */
+.user-info {
+    display: flex;
+    flex-direction: column; /* Расположение текста один под другим */
+    justify-content: center; /* Центрирование текста по вертикали */
+    flex: 1; /* Заполняет оставшееся пространство */
+}
+
+/* Имя пользователя */
+.user-name {
+    font-size: 16px; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    color: #FFFFFF; /* Белый цвет */
+    margin-bottom: 5px; /* Отступ снизу */
+}
+
+/* Уровень пользователя */
+.user-level {
+    font-size: 14px; /* Размер текста */
+    color: #FFFFFF; /* Белый цвет */
+    opacity: 0.8; /* Легкая прозрачность для отличия */
+}
+
+/* =============================================================================== */
+
+
+/* Новый внутренний контейнер */
+.main-content-container {
+    position: absolute; /* Абсолютное позиционирование внутри background-border */
+    top: 143px; /* Отступ сверху от родительского контейнера */
+    width: auto; /* Ширина контейнера */
+    max-width: 370px;
+    height: 400px; /* Высота контейнера */
+    background-image: url('img/background.png'); /* Задний фон картинка */
+    background-size: cover; /* Растягивание изображения */
+    border: 3px solid #BEA17A; /* Рамка */
+    border-radius: 30px; /* Закругление */
+    box-sizing: border-box; /* Учет рамок в размерах */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирование содержимого */
+    z-index: 11;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+/* Верхняя часть с монеткой и счетом */
+.top-section {
+    display: flex;
+    align-items: center; /* Центрирование по вертикали */
+    margin-top: 10px; /* Отступ сверху */
+}
+
+.coin-icon {
+    width: 62px;
+    height: 59px;
+}
+
+.user-score {
+    font-size: 24px; /* Размер текста счета */
+    font-weight: bold; /* Жирный текст */
+    color: #FFFFFF; /* Белый цвет */
+    margin-right: 10px;
+}
+
+/* Изображение огра */
+.ogre-image {
+    margin-top: auto; /* Автоматическое размещение в центре */
+    margin-bottom: auto; /* Автоматическое размещение в центре */
+}
+
+.ogre-image img {
+    max-width: 80%; /* Масштабирование изображения */
+    height: 80%; /* Сохранение пропорций */
+}
+
+/* Маленькие кликабельные контейнеры */
+.small-container {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 67px; /* Отступ от верхней части родителя */
+    text-align: center; /* Выравнивание текста */
+}
+
+.small-box {
+    width: 63px;
+    height: 63px;
+    border: 2px solid #BEA17A; /* Рамка */
+    border-radius: 5px; /* Закругленные углы */
+    background-size: cover; /* Картинка растягивается на весь контейнер */
+    overflow: hidden; /* Обрезка изображения по рамке */
+}
+
+.small-box img {
+    width: 100%; /* Заполнение контейнера */
+    height: 100%; /* Заполнение контейнера */
+    object-fit: cover; /* Обрезка изображения для сохранения пропорций */
+}
+
+.small-text {
+    font-size: 12px; /* Размер текста */
+    color: #FFFFFF; /* Белый цвет */
+    margin-top: 5px; /* Отступ сверху */
+}
+
+/* Позиционирование правого контейнера */
+.small-container[right="10px"] {
+    right: 10px;
+    left: auto; /* Сброс левого отступа */
+}
+
+/* ============================================================================== */
+
+/* Контейнер шкалы */
+.progress-bar {
+    position: relative; /* Для позиционирования элементов внутри */
+    max-width: 350px;
+    width: auto; /* Ширина контейнера */
+    height: 60px; /* Высота контейнера */
+    border: 3px solid #BEA17A; /* Рамка контейнера */
+    border-radius: 30px; /* Закругление углов */
+    background-color: #302315; /* Цвет заднего фона */
+    margin-top: 490px; /* Отступ сверху */
+    margin-left: 20px;
+    margin-right: 20px;
+    display: flex; /* Флекс для размещения текста и изображения */
+    align-items: center; /* Выравнивание по вертикали */
+    justify-content: center; /* Центрирование текста */
+    box-sizing: border-box; /* Учет рамок в размерах */
+    font-size: 24px; /* Размер текста */
+    font-weight: bold; /* Жирный текст */
+    color: #FFFFFF; /* Белый цвет текста */
+}
+
+/* Изображение окорочка */
+.progress-bar-icon {
+    position: absolute; /* Абсолютное позиционирование */
+    left: -30px; /* Выход за пределы контейнера */
+    top: -24px; /* Выравнивание по вертикали */
+    width: 93px;
+    height: 109px;
+    object-fit: cover;
+    z-index: 2; /* Помещаем изображение выше шкалы */
+}
+
+/* Текст внутри шкалы */
+.progress-bar-text {
+    z-index: 1; /* Текст ниже иконки */
+}
+
+/* ================================================================================ */
+
+/* Кнопка Start */
+.progress-button {
+    display: block; /* Блочный элемент для центрирования */
+    width: 150px; /* Ширина кнопки */
+    height: 70px; /* Высота кнопки */
+    margin: 20px auto 0 auto; /* Отступ сверху и автоцентрирование */
+    border: 3px solid #BEA17A; /* Рамка такого же цвета */
+    border-radius: 30px; /* Закругление углов */
+    background-color: #302315; /* Цвет фона кнопки */
+    color: #FFFFFF; /* Цвет текста */
+    font-size: 24px; /* Размер текста */
+    font-weight: bold; /* Жирный шрифт */
+    text-align: center; /* Центрирование текста */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s; /* Плавное изменение цвета фона */
+
+}
+
+/* Эффект при наведении */
+.progress-button:hover {
+    background-color: #5F4A32; /* Новый цвет фона при наведении */
+}
