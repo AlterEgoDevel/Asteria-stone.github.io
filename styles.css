@@ -178,24 +178,26 @@ body {
 /* =============================================================================== */
 
 
-/* Новый внутренний контейнер */
+/* Родительский контейнер */
 .main-content-container {
-    position: absolute; /* Абсолютное позиционирование внутри background-border */
-    top: 143px; /* Отступ сверху от родительского контейнера */
-    width: auto; /* Ширина контейнера */
-    max-width: 370px;
-    height: 400px; /* Высота контейнера */
-    background-image: url('img/background.png'); /* Задний фон картинка */
-    background-size: cover; /* Растягивание изображения */
-    border: 3px solid #BEA17A; /* Рамка */
-    border-radius: 30px; /* Закругление */
-    box-sizing: border-box; /* Учет рамок в размерах */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 143px; /* Отступ сверху */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Смещение контейнера по центру */
+    width: 100%; /* Адаптивная ширина */
+    max-width: 370px; /* Ограничение максимальной ширины */
+    height: 400px; /* Фиксированная высота */
+    background-image: url('img/background.png'); /* Задний фон */
+    background-size: cover;
+    border: 3px solid #BEA17A;
+    border-radius: 30px;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Центрирование содержимого */
-    z-index: 11;
-    margin-right: 10px;
-    margin-left: 10px;
+    align-items: center;
+    justify-content: center; /* Центрирование содержимого */
+    overflow: hidden; /* Скрытие содержимого, выходящего за рамки */
+
 }
 
 /* Верхняя часть с монеткой и счетом */
@@ -219,13 +221,16 @@ body {
 
 /* Изображение огра */
 .ogre-image {
-    margin-top: auto; /* Автоматическое размещение в центре */
-    margin-bottom: auto; /* Автоматическое размещение в центре */
+    width: 100%; /* Заполнение по ширине родителя */
+    display: flex;
+    justify-content: center; /* Центрирование изображения */
+    align-items: center;
 }
 
 .ogre-image img {
-    max-width: 80%; /* Масштабирование изображения */
-    height: 80%; /* Сохранение пропорций */
+    max-width: 80%; /* Адаптивная ширина изображения */
+    max-height: 100%; /* Ограничение по высоте */
+    object-fit: contain; /* Сохранение пропорций без обрезки */
 }
 
 /* Маленькие кликабельные контейнеры */
