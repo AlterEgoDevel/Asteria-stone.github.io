@@ -186,7 +186,7 @@ body {
     transform: translateX(-50%); /* Смещение контейнера по центру */
     width: 100%; /* Адаптивная ширина */
     max-width: 370px; /* Ограничение максимальной ширины */
-    height: 400px; /* Фиксированная высота */
+    height: 360px; /* Фиксированная высота */
     background-image: url('img/background.png'); /* Задний фон */
     background-size: cover;
     border: 3px solid #BEA17A;
@@ -231,7 +231,7 @@ body {
 
 .ogre-image img {
     max-width: 80%; /* Адаптивная ширина изображения */
-    max-height: 100%; /* Ограничение по высоте */
+    max-height: 70%; /* Ограничение по высоте */
     object-fit: contain; /* Сохранение пропорций без обрезки */
 }
 
@@ -280,7 +280,7 @@ body {
     border: 3px solid #BEA17A; /* Рамка контейнера */
     border-radius: 30px; /* Закругление углов */
     background-color: #302315; /* Цвет заднего фона */
-    margin-top: 480px; /* Отступ сверху */
+    margin-top: 440px; /* Отступ сверху */
     margin-left: 20px;
     margin-right: 20px;
     display: flex; /* Флекс для размещения текста и изображения */
