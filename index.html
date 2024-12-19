@@ -11,9 +11,10 @@
 <!-- Основной контейнер с задним фоном -->
 <div class="background-container"> 
   
-  <!-- Контейнер с рамкой фона -->
-  <div class="background">
-    <div class="background-border">
+    <!-- Контейнер с рамкой фона -->
+    <div class="background">
+    
+        <div class="background-border">
 
       <!-- Контейнер основной секции (с огром, счетом и кнопками) -->
       <div class="main-content-container">
@@ -36,7 +37,7 @@
               <img src="img/moneyboom.png" alt="Big Drawing">
             </div>
           </a>
-          <p class="small-text">Big Drawing</p>
+          <p class="small-text">Big <br>Drawing</p>
         </div>
 
         <div class="small-container" style="right: 10px;">
@@ -57,39 +58,61 @@
 
       <!-- Кнопка "Start" -->
       <button class="progress-button">Start</button>
-    </div>
+        </div>
 
-    <!-- Контейнер с информацией пользователя -->
-    <div class="user-info-container">
+        <!-- Контейнер с информацией пользователя -->
+        <div class="user-info-container">
       <div class="avatar"></div> <!-- Аватар пользователя -->
       <div class="user-info">
         <p class="user-name">Имя Пользователя</p>
         <p class="user-level">Уровень 5</p>
       </div>
+        </div>
+
+        <!-- Навигационное меню -->
+        <div class="navigation">
+        <div class="navigation-border"></div>
+            <div class="navigation-menu">
+                <!-- Элемент меню: Home -->
+                <div class="nav-item" id="nav-item-1">
+                  <a href="#home">
+                    <img src="img/Home.png" alt="Home" class="nav-icon">
+                    <span class="nav-text">Home</span>
+                  </a>
+                </div>
+                <!-- Элемент меню: Boost -->
+                <div class="nav-item">
+                  <a href="#boost">
+                    <img src="img/Burg.png" alt="Boost" class="nav-icon">
+                    <span class="nav-text">Boost</span>
+                  </a>
+                </div>
+                <!-- Элемент меню: Earn -->
+                <div class="nav-item">
+                  <a href="#earn">
+                    <img src="img/Boosters.png" alt="Earn" class="nav-icon">
+                    <span class="nav-text">Earn</span>
+                  </a>
+                </div>
+                <!-- Элемент меню: Stats -->
+                <div class="nav-item">
+                  <a href="#stats">
+                    <img src="img/clock.png" alt="Stats" class="nav-icon">
+                    <span class="nav-text">Stats</span>
+                  </a>
+                </div>
+                <!-- Элемент меню: Invite -->
+                <div class="nav-item" id="nav-item-5">
+                  <a href="#invite">
+                    <img src="img/sosege.png" alt="Invite" class="nav-icon">
+                    <span class="nav-text">Invite</span>
+                  </a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Навигационное меню -->
-    <div class="navigation">
-      <div class="navigation-border"></div>    
-      <div class="navigation-menu">
-        <div class="nav-item nav-item-1">
-          <a href="#"></a>
-        </div>
-        <div class="nav-item">
-          <a href="#"></a>
-        </div>
-        <div class="nav-item">
-          <a href="#"></a>
-        </div>
-        <div class="nav-item">
-          <a href="#"></a>
-        </div>
-        <div class="nav-item nav-item-5">
-          <a href="#"></a>
-        </div>
-      </div>    
-    </div>
-  </div>
 </div>
 
 </body>
