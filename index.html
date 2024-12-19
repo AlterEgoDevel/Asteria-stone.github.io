@@ -4,106 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Navigation Menu</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css"> <!-- Подключение внешнего CSS -->
 </head>
 <body>
   
+<!-- Основной контейнер с задним фоном -->
 <div class="background-container"> 
   
-   <div class="background">
+  <!-- Контейнер с рамкой фона -->
+  <div class="background">
     <div class="background-border">
 
-                    <!-- Контейнер с огром -->
-                    <div class="main-content-container">
-                
-                        <!-- Верхняя часть с монеткой и счетом -->
-                        <div class="top-section">
-                            <img src="img/mini coin.png" alt="Монетка" class="coin-icon">
-                            <span class="user-score">123,456,789</span>
-                        </div>
-            
-                        <!-- Изображение огра -->
-                        <div class="ogre-image">
-                            <img src="img/c0d5466fcj5gqd8hvpl6ulqth0-5ff6ee27652df2d1ff09fc90504353bb.png" alt="Огр">
-                        </div>
-            
-                        <!-- Маленькие кликабельные контейнеры -->
-                        <div class="small-container" style="left: 10px;">
-                            <a href="#big-drawing">
-                                <div class="small-box">
-                                    <img src="img/moneyboom.png" alt="Big Drawing">
-                                </div>
-                            </a>
-                            <p class="small-text">Big Drawing</p>
-                        </div>
-            
-                        <div class="small-container" style="right: 10px">
-                            <a href="#treasure-chest">
-                                <div class="small-box">
-                                    <img src="img/chest grand prise.png" alt="Treasure Chest">
-                                </div>
-                            </a>
-                            <p class="small-text">Treasure <br>Chest</p>
-                        </div>
-                    </div>
-
-        <!-- Контейнер шкалы -->
-        <div class="progress-bar">
-            <img src="img/chik.png" alt="Окорочок" class="progress-bar-icon">
-            <span class="progress-bar-text">HUNGER...</span>
-        </div>
-
-        <!-- Кнопка "Start" -->
-        <button class="progress-button">Start</button>
-
-    </div>
-
-
-
-
-
-
-
-    <!-- Информация пользователя -->
-   <div class="user-info-container">
-        <div class="avatar"></div>
-        <div class="user-info">
-            <p class="user-name">Имя Пользователя</p>
-            <p class="user-level">Уровень 5</p>
-        </div>
-    </div>
-
-<!-- Навигационное меню -->
-
-    <div class="navigation">
-
-        <div class="navigation-border">
-        </div>    
-
-            <div class="navigation-menu">
-            
-                <div class="nav-item nav-item-1">
-                    <a href="#"></a>
-                </div>
-                <div class="nav-item">
-                    <a href="#"></a>
-                </div>
-                <div class="nav-item">
-                    <a href="#"></a>
-                </div>
-                <div class="nav-item">
-                    <a href="#"></a>
-                </div>
-                <div class="nav-item nav-item-5">
-                    <a href="#"></a>
-                </div>
-            
-            </div>    
+      <!-- Контейнер основной секции (с огром, счетом и кнопками) -->
+      <div class="main-content-container">
         
+        <!-- Верхняя часть: монетка и счет пользователя -->
+        <div class="top-section">
+          <img src="img/mini coin.png" alt="Монетка" class="coin-icon">
+          <span class="user-score">123,456,789</span>
+        </div>
+        
+        <!-- Изображение огра -->
+        <div class="ogre-image">
+          <img src="img/c0d5466fcj5gqd8hvpl6ulqth0-5ff6ee27652df2d1ff09fc90504353bb.png" alt="Огр">
+        </div>
+        
+        <!-- Маленькие кликабельные контейнеры -->
+        <div class="small-container" style="left: 10px;">
+          <a href="#big-drawing">
+            <div class="small-box">
+              <img src="img/moneyboom.png" alt="Big Drawing">
+            </div>
+          </a>
+          <p class="small-text">Big Drawing</p>
+        </div>
+
+        <div class="small-container" style="right: 10px;">
+          <a href="#treasure-chest">
+            <div class="small-box">
+              <img src="img/chest grand prise.png" alt="Treasure Chest">
+            </div>
+          </a>
+          <p class="small-text">Treasure <br>Chest</p>
+        </div>
+      </div>
+
+      <!-- Контейнер шкалы прогресса -->
+      <div class="progress-bar">
+        <img src="img/chik.png" alt="Окорочок" class="progress-bar-icon">
+        <span class="progress-bar-text">HUNGER...</span>
+      </div>
+
+      <!-- Кнопка "Start" -->
+      <button class="progress-button">Start</button>
     </div>
 
-</div>
+    <!-- Контейнер с информацией пользователя -->
+    <div class="user-info-container">
+      <div class="avatar"></div> <!-- Аватар пользователя -->
+      <div class="user-info">
+        <p class="user-name">Имя Пользователя</p>
+        <p class="user-level">Уровень 5</p>
+      </div>
+    </div>
 
+    <!-- Навигационное меню -->
+    <div class="navigation">
+      <div class="navigation-border"></div>    
+      <div class="navigation-menu">
+        <div class="nav-item nav-item-1">
+          <a href="#"></a>
+        </div>
+        <div class="nav-item">
+          <a href="#"></a>
+        </div>
+        <div class="nav-item">
+          <a href="#"></a>
+        </div>
+        <div class="nav-item">
+          <a href="#"></a>
+        </div>
+        <div class="nav-item nav-item-5">
+          <a href="#"></a>
+        </div>
+      </div>    
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
