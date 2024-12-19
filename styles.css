@@ -118,7 +118,7 @@ body {
     font-size: 10px; /* Размер текста */
     margin-right: 10px; /* Отступ справа */
     margin-left: 10px; /* Отступ слева */
-    margin-top: 66px;
+    margin-top: 56px;
     background-color: #191109; /* Цвет фона контейнера */
     box-sizing: border-box; /* Учет рамок и отступов */
 }
@@ -128,7 +128,7 @@ body {
 /* Контейнер для информации о пользователе */
 .user-info-container {
     position: absolute; /* Абсолютное позиционирование */
-    top: 26px; /* Отступ от верхней части экрана */
+    top: 20px; /* Отступ от верхней части экрана */
     left: 50%; /* Центрирование по горизонтали */
     transform: translateX(-50%); /* Смещение для центрирования */
     width: 300px; /* Ширина контейнера */
@@ -181,7 +181,7 @@ body {
 /* Родительский контейнер */
 .main-content-container {
     position: absolute; /* Абсолютное позиционирование */
-    top: 143px; /* Отступ сверху */
+    top: 120px; /* Отступ сверху */
     left: 50%; /* Центрирование по горизонтали */
     transform: translateX(-50%); /* Смещение контейнера по центру */
     width: 100%; /* Адаптивная ширина */
@@ -190,6 +190,8 @@ body {
     background-image: url('img/background.png'); /* Задний фон */
     background-size: cover;
     border: 3px solid #BEA17A;
+    border-right: 5px solid #BEA17A;
+    border-left: 5px solid #BEA17A;
     border-radius: 30px;
     box-sizing: border-box;
     display: flex;
@@ -278,7 +280,7 @@ body {
     border: 3px solid #BEA17A; /* Рамка контейнера */
     border-radius: 30px; /* Закругление углов */
     background-color: #302315; /* Цвет заднего фона */
-    margin-top: 490px; /* Отступ сверху */
+    margin-top: 480px; /* Отступ сверху */
     margin-left: 20px;
     margin-right: 20px;
     display: flex; /* Флекс для размещения текста и изображения */
@@ -312,7 +314,7 @@ body {
 .progress-button {
     display: block; /* Блочный элемент для центрирования */
     width: 150px; /* Ширина кнопки */
-    height: 70px; /* Высота кнопки */
+    height: 60px; /* Высота кнопки */
     margin: 20px auto 0 auto; /* Отступ сверху и автоцентрирование */
     border: 3px solid #BEA17A; /* Рамка такого же цвета */
     border-radius: 30px; /* Закругление углов */
