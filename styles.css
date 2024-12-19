@@ -206,7 +206,7 @@ body {
 .top-section {
     display: flex;
     align-items: center; /* Центрирование по вертикали */
-    margin-top: 40px; /* Отступ сверху */
+    margin-top: 50px; /* Отступ сверху */
 }
 
 .coin-icon {
@@ -223,6 +223,7 @@ body {
 
 /* Изображение огра */
 .ogre-image {
+    height: 330px;
     width: 100%; /* Заполнение по ширине родителя */
     display: flex;
     justify-content: center; /* Центрирование изображения */
