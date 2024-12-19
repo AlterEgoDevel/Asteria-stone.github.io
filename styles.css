@@ -105,6 +105,7 @@ body {
 
 /* Граница фона */
 .background-border {
+    position: relative; /* Родительский контейнер для дочернего */
     height: 100%; /* Автоматическая высота */
     min-height: 100%;
     max-width: 390px; /* Ширина контейнера */
@@ -121,6 +122,7 @@ body {
     margin-top: 56px;
     background-color: #191109; /* Цвет фона контейнера */
     box-sizing: border-box; /* Учет рамок и отступов */
+    overflow: hidden; /* Скрывает всё, что выходит за пределы */
 }
 
 /* =============================================================================== */
@@ -131,7 +133,7 @@ body {
     top: 15px; /* Отступ от верхней части экрана */
     left: 50%; /* Центрирование по горизонтали */
     transform: translateX(-50%); /* Смещение для центрирования */
-    width: 300px; /* Ширина контейнера */
+    width: 313px; /* Ширина контейнера */
     height: 80px; /* Высота контейнера */
     background-color: #191109; /* Цвет фона */
     border: 3px solid #BEA17A; /* Цвет рамки */
@@ -178,7 +180,7 @@ body {
 /* =============================================================================== */
 
 
-/* Родительский контейнер */
+/* Дочерний контейнер с огром */
 .main-content-container {
     position: absolute; /* Абсолютное позиционирование */
     top: 110px; /* Отступ сверху */
@@ -190,8 +192,8 @@ body {
     background-image: url('img/background.png'); /* Задний фон */
     background-size: cover;
     border: 3px solid #BEA17A;
-    border-right: 5px solid #BEA17A;
-    border-left: 5px solid #BEA17A;
+    border-right: 0px solid #BEA17A;
+    border-left: 0px solid #BEA17A;
     border-radius: 30px;
     box-sizing: border-box;
     display: flex;
@@ -199,7 +201,6 @@ body {
     align-items: center;
     justify-content: center; /* Центрирование содержимого */
     overflow: hidden; /* Скрытие содержимого, выходящего за рамки */
-
 }
 
 /* Верхняя часть с монеткой и счетом */
@@ -275,15 +276,15 @@ body {
 /* Контейнер шкалы */
 .progress-bar {
     position: relative; /* Для позиционирования элементов внутри */
-    max-width: 350px;
+    max-width: 312px;
     width: auto; /* Ширина контейнера */
     height: 60px; /* Высота контейнера */
     border: 3px solid #BEA17A; /* Рамка контейнера */
     border-radius: 30px; /* Закругление углов */
     background-color: #302315; /* Цвет заднего фона */
     margin-top: 405px; /* Отступ сверху */
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: auto;
+    margin-right: auto;
     display: flex; /* Флекс для размещения текста и изображения */
     align-items: center; /* Выравнивание по вертикали */
     justify-content: center; /* Центрирование текста */
