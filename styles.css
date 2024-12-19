@@ -45,7 +45,7 @@ body {
     width: 100%; /* Ширина панели */
     min-width: auto;
     height: 40px; /* Высота панели */
-    background-color: #191109; /* Цвет фона */
+    background-color: #19110900; /* Цвет фона */
     padding: 0px 15px 0px 15px; /* Внутренние отступы */
     position: relative; /* Для управления внутренними элементами */
     margin-left: 10px;
