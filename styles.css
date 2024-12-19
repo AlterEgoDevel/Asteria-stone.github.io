@@ -186,7 +186,7 @@ body {
     transform: translateX(-50%); /* Смещение контейнера по центру */
     width: 100%; /* Адаптивная ширина */
     max-width: 370px; /* Ограничение максимальной ширины */
-    height: 360px; /* Фиксированная высота */
+    height: 340px; /* Фиксированная высота */
     background-image: url('img/background.png'); /* Задний фон */
     background-size: cover;
     border: 3px solid #BEA17A;
@@ -206,7 +206,7 @@ body {
 .top-section {
     display: flex;
     align-items: center; /* Центрирование по вертикали */
-    margin-top: 50px; /* Отступ сверху */
+    margin-top: 20px; /* Отступ сверху */
 }
 
 .coin-icon {
@@ -223,7 +223,7 @@ body {
 
 /* Изображение огра */
 .ogre-image {
-    height: 330px;
+    height: 260px;
     width: 100%; /* Заполнение по ширине родителя */
     display: flex;
     justify-content: center; /* Центрирование изображения */
@@ -232,7 +232,7 @@ body {
 
 .ogre-image img {
     max-width: 80%; /* Адаптивная ширина изображения */
-    max-height: 70%; /* Ограничение по высоте */
+    max-height: 90%; /* Ограничение по высоте */
     object-fit: contain; /* Сохранение пропорций без обрезки */
 }
 
