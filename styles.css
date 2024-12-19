@@ -325,7 +325,7 @@ body {
     text-align: center; /* Центрирование текста */
     cursor: pointer; /* Указатель при наведении */
     transition: background-color 0.3s; /* Плавное изменение цвета фона */
-
+    margin-bottom: 150px;
 }
 
 /* Эффект при наведении */
