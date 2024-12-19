@@ -281,7 +281,7 @@ body {
     border: 3px solid #BEA17A; /* Рамка контейнера */
     border-radius: 30px; /* Закругление углов */
     background-color: #302315; /* Цвет заднего фона */
-    margin-top: 425px; /* Отступ сверху */
+    margin-top: 405px; /* Отступ сверху */
     margin-left: 20px;
     margin-right: 20px;
     display: flex; /* Флекс для размещения текста и изображения */
